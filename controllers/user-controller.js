@@ -4,9 +4,14 @@ module.exports = {
     async getAllUsers(req, res) {
         try {
             const userData = await User.find()
+
+            if (!userData) {
+                res.status(404).json({ message: 'No users found!' });
+                return;
+            }
+            
             res.json(userData);
         } catch (err) {
-            console.log(err);
             res.status(500).json(err);
         }
     },
@@ -21,6 +26,13 @@ module.exports = {
     },
     async createUser(req, res) {
         try {
+            
+            const user = await User.findOne({ username: req.body.username })
+            if (user) {
+                res.status(400).json({ message: 'Username already exists!' });
+                return;
+            }
+
             if (!req.body.username) {
                 res.status(400).json({ message: 'Username is required!' });
                 return;
