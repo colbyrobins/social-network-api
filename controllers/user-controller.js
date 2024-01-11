@@ -4,12 +4,12 @@ module.exports = {
     async getAllUsers(req, res) {
         try {
             const userData = await User.find()
-
+            
             if (!userData) {
                 res.status(404).json({ message: 'No users found!' });
                 return;
             }
-            
+
             res.json(userData);
         } catch (err) {
             res.status(500).json(err);
@@ -54,11 +54,17 @@ module.exports = {
                 { _id: req.params.id },
                 req.body,
                 { new: true }
-            )
-            res.json(userData);
+            );
+            
+            if (!userData) {
+                res.status(404).json({ message: 'No user found with this id!' });
+                return;
+            } 
+            res.status(200).json({ data: userData, message: 'User updated!' });
+
         } catch (err) {
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json({ message: 'Server side error!' });
         }
     },
     async deleteUser(req, res) {
