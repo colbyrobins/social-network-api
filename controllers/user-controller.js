@@ -74,6 +74,10 @@ module.exports = {
                 res.status(404).json({ message: 'No user found with this id!' });
                 return;
             }
+
+            // Delete thoughts created by the user
+            await Thought.deleteMany({ username: userData.username });
+            
             res.json(userData);
         } catch (err) {
             console.log(err);
