@@ -32,7 +32,7 @@ The API will be running at http://localhost:3005.
 
 
 ## Walkthrough Video
-Check out the [walkthrough]() video to see the functionality in action.
+Check out the [walkthrough](https://drive.google.com/file/d/1cdyzAm0-qe-xpAjlhiffv6G1dk3GFLTI/view) video to see the functionality in action.
 
 ## Notes
 Optionally, you may use a JavaScript date library of your choice or the native JavaScript Date object to format timestamps.
